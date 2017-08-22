@@ -14,7 +14,7 @@ module.exports = {
      */
     create: (req, res) => {
         if (req.body.reward === undefined) {
-            res.send(400, "Invalid arguments");
+            res.send(400);
             return;
         }
 

@@ -42,4 +42,11 @@ describe('Members Controller', () => {
             });
             done();
         });
+
+    it('Shoud delete member for given member id', (done) => {
+        request(sails.hooks.http.app)
+            .delete('/members/test@gmail.com')
+            .expect(200)
+            .end(done);
+        });
 });

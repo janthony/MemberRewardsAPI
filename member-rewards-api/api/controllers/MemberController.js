@@ -8,6 +8,28 @@
 module.exports = {
     
     /**
+     * Remove given memberid
+     */
+    delete: (req, res) => {
+        if (req.params.memberId === undefined){
+            res.send(400);
+            return;
+        }
+
+        Member.destroy({
+            email: req.params.memberId
+        })
+        .exec(function (err){
+            if (err) {
+                return res.negotiate(err);
+            }
+            sails.log(`Deleted member with ${req.params.memberId} `);
+            return res.ok();
+        });
+
+    },
+
+    /**
      * Create a member. 
      * Expect member data in the object
      */
@@ -26,7 +48,7 @@ module.exports = {
 
         Member.create(member).exec((err, newMember) => {
             if (err){
-                res.send(500, err);
+                res.negotiate(err);
             } 
             else {
                 res.send(200, {"memberId": newMember.email});
@@ -38,8 +60,6 @@ module.exports = {
      * Return member for the id
      */
     getMemberForId: (req, res) => {
-        
-        debugger;
         
         if (req.params.memberId === undefined){
             res.send(400);

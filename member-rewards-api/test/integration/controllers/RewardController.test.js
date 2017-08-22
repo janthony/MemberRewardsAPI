@@ -2,6 +2,30 @@ var request = require('supertest');
 var assert = require("assert");
 describe('Rewards Controller', () => {
 
+  before(() => {
+      const member = {
+        email: "test@gmail.com",
+        name: "test",
+        dob: "1982-01-01",
+        city: "melbourne",
+        country: "australia",
+        street: "ringwood street",
+        state: "Victoria"
+    }
+
+    request(sails.hooks.http.app)
+        .post('/members')
+        .send({"member": member})
+        .end();
+
+  });
+
+  after(() => {
+    request(sails.hooks.http.app)
+        .delete('/members/test@gmail.com')
+        .end();
+  });
+
   it('reject empty request', (done) => {
     request(sails.hooks.http.app)
       .post('/rewards')

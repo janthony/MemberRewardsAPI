@@ -37,6 +37,7 @@ module.exports.routes = {
   },
   'post /rewards': 'RewardController.create',
   'get /members/:memberId/rewards': 'RewardController.getRewardsForMember',
+  'delete /members/:memberId': 'MemberController.delete',
   'get /members/:memberId': 'MemberController.getMemberForId',
   'post /members': 'MemberController.create'
   
