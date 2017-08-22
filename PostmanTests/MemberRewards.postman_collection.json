@@ -1,0 +1,109 @@
+{
+	"variables": [],
+	"info": {
+		"name": "MemberRewards",
+		"_postman_id": "6525f692-8f40-1951-cf8d-ae3b281bad87",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GetMember",
+			"request": {
+				"url": {
+					"raw": "localhost:1337/members?email=test@gmail.com",
+					"host": [
+						"localhost"
+					],
+					"port": "1337",
+					"path": [
+						"members"
+					],
+					"query": [
+						{
+							"key": "email",
+							"value": "test@gmail.com",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"member\":\n\t{\n\t    \"email\": \"test@gmail.com\",\n\t    \"name\": \"test\",\n\t    \"dob\": \"1982-01-01\",\n\t    \"city\": \"melbourne\",\n\t    \"country\": \"australia\",\n\t    \"street\": \"ringwood street\",\n\t    \"state\": \"Victoria\"\n\t}\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "GetRewardsForMember",
+			"request": {
+				"url": "localhost:1337/members/test@gmail.com/rewards",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"member\":\n\t{\n\t    \"email\": \"test@gmail.com\",\n\t    \"name\": \"test\",\n\t    \"dob\": \"1982-01-01\",\n\t    \"city\": \"melbourne\",\n\t    \"country\": \"australia\",\n\t    \"street\": \"ringwood street\",\n\t    \"state\": \"Victoria\"\n\t}\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "CreateReward",
+			"request": {
+				"url": "localhost:1337/rewards",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"reward\": {\n  \"rule\": {\"conditions\":{\"all\":[{\"fact\":\"member\",\"operator\":\"greaterThanInclusive\",\"value\":\"30\",\"path\":\".age\"}]},\"event\":{\"type\":\"reward-age-over-30\",\"params\":{\"message\":\"Member over 30 years old\"}}},\n  \"startDate\": \"2017-08-20\",\n  \"endDate\": \"2017-08-20\",\n  \"rewardDetails\": \"Free movie tickets\"\n}}        "
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "CreateMember",
+			"request": {
+				"url": "localhost:1337/members",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"member\":\n\t{\n\t    \"email\": \"test@gmail.com\",\n\t    \"name\": \"test\",\n\t    \"dob\": \"1982-01-01\",\n\t    \"city\": \"melbourne\",\n\t    \"country\": \"australia\",\n\t    \"street\": \"ringwood street\",\n\t    \"state\": \"Victoria\"\n\t}\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}
